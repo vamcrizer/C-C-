@@ -15,6 +15,10 @@ int primecheck(int n){
 ll hoanhao[10];
 int cnt = 0;
 int main(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
     ll n;
     scanf("%lld", &n);
     for (int p = 2; p <= 32; p++){
@@ -28,10 +32,6 @@ int main(){
     }
     
     for (int i = 0; i < cnt; i++){
-        if (hoanhao[i] == n){
-            printf("1\n");
-            return 0;
-        }
+        printf("%lld\n", hoanhao[i]);
     }
-    printf("0");
 }
