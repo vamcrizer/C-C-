@@ -11,6 +11,11 @@ void to_lower(char a[]){
         a[i] = tolower(a[i]);
     }
 }
+void to_upper(char a[]){
+    for (int i = 0; i < strlen(a); i++){
+        a[i] = toupper(a[i]);
+    }
+}
 int main(){
     int t;
     scanf("%d", &t);
@@ -24,10 +29,15 @@ int main(){
             strcpy(a[cnt++], tok);
             tok = strtok(NULL, " ");
         }
-    for (int i = 0; i < cnt; i++){
+    for (int i = 1; i < cnt; i++){
         to_lower(a[i]);
-        printf("%s ", a[i]);
+        printf("%s", a[i]);
+        if (i < cnt - 1){
+            printf(" ");
+        }
     }
+    to_upper(a[0]);
+    printf(", %s", a[0]);
     printf("\n");
     }
 }
