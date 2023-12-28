@@ -16,10 +16,14 @@ int degree(ll n, ll k){
     return ans;
 }
 
-int legendre(ll n; ll k){
+int legendre(ll n, ll k){
     int ans = 0;
     for (int i = k; i <= n; i *= k){
         ans += n / i;
     }
     return ans;
+}
+
+int main(){
+    printf("%d", legendre(10, 7));
 }
