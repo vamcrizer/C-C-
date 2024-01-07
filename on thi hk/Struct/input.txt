@@ -1,0 +1,11 @@
+1
+2
+nguyen van hai
+8.5 9.0 10.0
+tran van tuan
+8.5 9.0 10.0
+2
+2
+tran van nam
+5.5 5.0 6.0
+3
