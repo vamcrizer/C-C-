@@ -9,9 +9,6 @@ void to_lower(char a[]){
 }
 
 int main(){
-    int t;
-    scanf("%d", &t);
-    for (int i = 1; i <= t; i++){
         char c[201];
         char s[201];
         scanf(" %[^\n]", c);
@@ -19,7 +16,6 @@ int main(){
         scanf(" %[^\n]", s);
         to_lower(s);
         char *tok = strtok(c, " ");
-        printf("Test %d: ", i);
         while(tok != NULL){
             char tmp[201];
             strcpy(tmp, tok);
@@ -29,8 +25,6 @@ int main(){
             }
             tok = strtok(NULL, " ");
         }
-        
-        printf("\n");
-    }
+
     return 0;
 }

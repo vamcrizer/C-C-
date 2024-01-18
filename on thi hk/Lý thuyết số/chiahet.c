@@ -6,7 +6,7 @@ typedef long long ll;
 
 int degree(int n, int k){
     int sum = 0;
-    for (int i = k; i <= n; i+=k){
+    for (int i = k; i <= n; i*=k){
         sum += n / i;
     }
     return sum;
