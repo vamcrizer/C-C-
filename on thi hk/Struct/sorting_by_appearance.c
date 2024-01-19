@@ -1,78 +1,61 @@
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
+typedef long long ll;
 
-struct DS
-{
-    int value, ap, idx;
+struct danhsach{
+    int val;
+    int freq;
+    int pos;
 };
+typedef struct danhsach ds;
 
-int cmpfunc(const void *a, const void *b){
-    struct DS *x = (struct DS*)a;
-    struct DS *y = (struct DS*)b;
-    if (x->ap == y->ap){
-        return x->idx < y->idx;
-    }
-    return x->ap < y->ap;
+int cmp1(const void *a, const void *b){
+    ds *x = (ds*)a;
+    ds *y = (ds*)b;
+    return x->val - y->val;
 }
 
-int cmpfunc2(const void *a, const void *b){
-    struct DS *x = (struct DS*)a;
-    struct DS *y = (struct DS*)b;
-    if (x->value == y->value){
-        return x->idx - y->idx;
+int cmp2(const void *a, const void *b){
+    ds *x = (ds*)a;
+    ds *y = (ds*)b;
+    if (x->freq == y->freq){
+        return x->pos - y->pos;
     }
-    return x->value - y->value;
+    return y->freq - x->freq;
 }
 
-int main()
-{
+
+
+int main(){
     int t;
     scanf("%d", &t);
-    while (t--)
-    {
-        int n;
-        int cnt = 0;
-        scanf("%d", &n);
-        struct DS *ds = (struct DS *)malloc(n * sizeof(*ds));
-        struct DS *bs = (struct DS *)malloc(n * sizeof(*bs));
-        for (int i = 0; i < n; i++)
-        {
-            scanf("%d", &bs[i].value);
-            bs[i].idx = i;
+    while(t--){
+    int n;
+    scanf("%d", &n);
+    ds a[n], b[n];
+    for (int i = 0; i < n; i++){
+        scanf("%d", &a[i].val);
+        a[i].freq = 1;
+        a[i].pos = i;
+    }
+    qsort(a, n, sizeof(ds), cmp1);
+    b[0] = a[0];
+    int cnt = 0;
+    for (int i = 1; i < n; i++){
+        if (a[i].val == a[i - 1].val){
+            b[cnt].freq++;
+        } else {
+            b[++cnt] = a[i];
         }
-        qsort(bs, n, sizeof(*bs), cmpfunc2);
-        for (int i = 0; i < n; i++)
-        {
-            if (bs[i].value == bs[i + 1].value)
-            {
-                ds[cnt].ap = 0;
-                ds[cnt].idx = bs[i].idx;
-                while (bs[i].value == bs[i + 1].value)
-                {
-                    ds[cnt].value = bs[i++].value;
-                    ds[cnt].ap++;
-                }
-                ds[cnt].ap++;
-                cnt++;
-            }
-            else
-            {
-                ds[cnt].ap = 1;
-                ds[cnt].idx = bs[i].idx;
-                ds[cnt].value = bs[i].value;
-                cnt++;
-            }
+    }
+    qsort(b, cnt + 1, sizeof(ds), cmp2);
+    for (int i = 0; i <= cnt; i++){
+        for (int j = 0; j < b[i].freq; j++){
+            printf("%d ", b[i].val);
         }
-
-        qsort(ds, cnt, sizeof(*ds), cmpfunc);
-        for (int i = cnt; i >= 0; i--)
-        {
-            for (int j = 0; j < ds[i].ap; j++)
-                printf("%d ", ds[i].value);
-        }
-        printf("\n");
+    }
+    printf("\n");
     }
 }
