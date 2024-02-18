@@ -3,6 +3,8 @@ using namespace std;
 using ll = long long;
 const int MOD = (int)1e9 + 7;
 
+int start = 1;
+
 struct Employee{
     string id;
     string name;
@@ -14,7 +16,13 @@ struct Employee{
 };
 
 void input(struct Employee &a){
-    a.id = "00001";
+	cin.ignore();
+    int tmp = start++;
+        if (tmp < 10){
+        a.id = '0' + to_string(tmp);
+        } else {
+            a.id = to_string(tmp);
+        }
     vector<string> ve;
     getline(cin, a.name);
     cin >> a.gender;
@@ -60,13 +68,18 @@ void input(struct Employee &a){
     a.cdate = ve[0] + "/" + ve[1] + "/" + ve[2];
 }
 
-void print(struct Employee a){
-    cout << a.id << " " << a.name << " " << a.gender << " " << a.date << " " << a.address << " " << a.tax << " " << a.cdate;
+void printlist(struct Employee a[], int n){
+    for (int i = 0; i < n; i++){
+    cout << "000" << a[i].id << " " << a[i].name << " " << a[i].gender << " " << a[i].date << " " << a[i].address << " " << a[i].tax << " " << a[i].cdate;
+    cout << endl;
+    }
 }
 
 int main(){
-    struct Employee a;
-    input(a);
-    print(a);
+    struct Employee lst[50];
+    int N,i;
+    cin >> N;
+    for(i = 0; i < N; i++) input(lst[i]);
+    printlist(lst,N);
     return 0;
 }
