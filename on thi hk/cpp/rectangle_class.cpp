@@ -27,6 +27,10 @@ public:
 };
 int main(){
     int x, y; cin >> x >> y;
+    if (x <= 0 || y <= 0){
+        cout << "INVALID";
+        return 0;
+    }
     string color; cin >> color;
     ds A(x, y, color);
     cout << A.perimeter(A.x, A.y) << " " << A.area(A.x, A.y) << " " << A.fcolor(A.color);
